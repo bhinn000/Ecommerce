@@ -90,6 +90,74 @@ namespace Ecommerce.Models
                 Console.WriteLine($"Product: {product.Name}, Shipping Cost: {product.CalculateShippingCost()}");
             }
 
+
+            //****Binary search implementation
+
+            // List of products for searching
+            List<Product> productBS = new List<Product>
+            {
+                new PhysicalProduct(33, "Biography", 700, 1), 
+                new DigitalProduct(37, "E-book", 100, "www.imsbookcom"),
+                product1,
+                product2,
+                product3,
+                product4
+            };
+
+            // Sort the products based on ProductId  ( binary search work in sorted list)
+            productBS = productBS.OrderBy(p => p.ProductId).ToList();
+
+            Console.Write("\nEnter Product ID you want to search: ");
+            if (int.TryParse(Console.ReadLine(), out int targetId))
+            { 
+                Product foundProduct = BinarySearch(productBS, targetId); //there is this method below
+
+                if (foundProduct != null)
+                {   
+                    Console.WriteLine($"Found Product: {foundProduct.Name}, Price: {foundProduct.Price}");
+                }
+                else
+                {
+                    Console.WriteLine("Product not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine(" Product ID not available");
+            }
+
+        }
+
+        // "Binary Search" Method
+        public static Product BinarySearch(List<Product> productBS, int targetId) // provide 'productBS'
+        {
+            int left = 0;
+            int right = productBS.Count - 1;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+
+                //  at mid ?
+                if (productBS[mid].ProductId == targetId)
+                {
+                    return productBS[mid]; // Product found
+                }
+
+                // If targetId is greater, ignore the left part
+                else if (productBS[mid].ProductId < targetId)
+                {
+                    left = mid + 1;
+                }
+                // If targetId is smaller, ignore the right part
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            return null; // Product not found
+
         }
     }
 

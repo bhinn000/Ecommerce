@@ -24,3 +24,6 @@ For polymorphism,
 	Derived class : PhysicalProduct and DigitalProduct , overriding CalculateShippingCost()
 	Now make different implementation (logic) of the functions according to the type of Product
 
+For binary search ,
+	Only these ID are valid , 1 ,2,3,4,33,37
+
