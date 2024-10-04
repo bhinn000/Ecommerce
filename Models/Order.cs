@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Models
 {
-    public class Order
+    public abstract class Order
     {
         public int OrderId { get; set; }
         public List<Product> Products { get; set; }
@@ -16,5 +16,8 @@ namespace Ecommerce.Models
             this.OrderId = orderId;
             this.Products = products ?? new List<Product>();
         }
+
+        //abstract method for calculating delivery days
+        public abstract void CalcDeliveryDays();
     }
 }

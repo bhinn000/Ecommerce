@@ -13,32 +13,47 @@ namespace Ecommerce.Models
             Product product3 = new Product(3, "Nail Paint", 50);
             Product product4 = new Product(4, "Multi Color Pen", 75);
 
-            //Derived class (of Product)
+            //3) Implementing Inheritance (base class features along with child class feature and also added in 'Order' list which expects 'Product'
+            //Derived class (of Product) 
             FoodProducts fp = new FoodProducts(11, "Noodles", 20 , "Veg");
             Stationery stationery = new Stationery(21, "Books", 500, "S_1001");
 
-            Order order1 = new Order(7, new List<Product> { product1, product2 , fp});
-            Order order2 =new Order(9, new List<Product>() { product3, product4 , stationery });
+            //4) Abstraction
+            //As order class is abstract , you cant use it to instantiate
+            //Order order1 = new Order(7, new List<Product> { product1, product2 , fp});
+            //Order order2 =new Order(9, new List<Product>() { product3, product4 , stationery });
 
-            Customer customer = new Customer(3, "Ram", new List<Order> { order1 , order2 });
+            //So this , abstraction
+            //"Order" is abstract class and 'CustomisedOrder' and 'RegularOrder' is concrete class
+            Order order1 = new CustomisedOrder(7, new List<Product> { product1, product2, fp });
+            Order order2 = new RegularOrder(9, new List<Product>() { product3, product4 , stationery });
+
+
+            Customer customer1 = new Customer(3, "Ram", new List<Order> { order1 , order2 });
+            Customer customer2 = new Customer(4, "Sita", new List<Order> { order1, order2 }); 
+            Customer customer3 = new OldCustomer(5, "Rita_Old", new List<Order> { order1, order2 });// for polymorphism , here is using abstraction concept too
 
             //display object details
             //you can also add console based on product type later
-            Console.WriteLine($"Customer ID: {customer.CustomerId}");
-            Console.WriteLine($"Customer Name: {customer.Name}");
-            foreach (var ord in customer.Orders)
+            Console.WriteLine($"Customer ID: {customer1.CustomerId}");
+            Console.WriteLine($"Customer Name: {customer1.Name}");
+            foreach (var ord in customer1.Orders)
             {
                 Console.WriteLine($"\nOrder ID: {ord.OrderId}");
                 foreach (var prod in ord.Products)
                 {
                     Console.WriteLine($"Product: {prod.Name}, Price: {prod.Price}");
                 }
+                //this will also give different methods process
+                Console.WriteLine("**Abstraction**");
+                ord.CalcDeliveryDays();
             }
 
-            // Testing Encapsulation
+            // 1)  Testing Encapsulation
             //customer.name = "Shyam"; // is not accessible as it is encapsulated , is private access
-            customer.Name = "Shyam"; // Name is accessible as it has used Public , get and set
-            Console.WriteLine($"\nUpdated Customer Name: {customer.Name}");
+            customer1.Name = "Shyam"; // Name is accessible as it has used Public , get and set
+            Console.Write("\n**Encapsulation");
+            Console.WriteLine($"\nUpdated Customer Name: {customer1.Name}");
             //customer.Name = " "; //doesnt match with validation rule from 'Set' , so error
 
             //but if we need to access Order which has not applied the encapsulation , it can be accessed through public properties , directly
@@ -47,8 +62,21 @@ namespace Ecommerce.Models
 
             //update Product Details
              product1.Name = "Phone"; //okay
-             //product1.Price = -500;//give error as against set rule , but if there was no encapsulation , this would have been allowed 
-        
+            //product1.Price = -500;//give error as against set rule , but if there was no encapsulation , this would have been allowed 
+
+            //2) now to show polymorphism 
+            List<Customer> customers = new List<Customer>
+            {
+                customer3,
+                customer2
+            };
+
+            Console.WriteLine("\n**Polymorphism here**");
+            foreach (var people in customers)
+            {
+                people.DisplayMessage(); // call the respective method based on the object type
+            }
+
         }
     }
 

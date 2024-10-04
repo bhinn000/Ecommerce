@@ -49,5 +49,16 @@ namespace Ecommerce.Models
             this.Orders = orders ;
 
         }
+
+        public virtual void DisplayMessage()
+        {
+            Console.WriteLine($"Customer ID: {CustomerId}, Name: {Name}");
+            Console.WriteLine("Happy Shopping!");
+        }
+
+        internal void DisplayDetails()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

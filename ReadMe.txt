@@ -8,5 +8,10 @@
 For inheritance , 
 	Make it in Product class ,
 	Product can be cosmetics , food related , stationery
-	So the order which is expecting list of product , we can also add foodproduct and stationery
+	So the "order" which is expecting list of "product" , we can also add "foodproduct and stationery"
 
+For abstraction, 
+	We use main parent class as its type but while initialisation , we use different derived class type(concrete)
+
+For polymorphism, 
+	different sub class or class will have same objects (base class or reference) but will run method on the basis of its actual method(derived class type)
