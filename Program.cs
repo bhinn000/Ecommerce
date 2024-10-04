@@ -77,6 +77,19 @@ namespace Ecommerce.Models
                 people.DisplayMessage(); // call the respective method based on the object type
             }
 
+            //according to the task
+            List<Product> products = new List<Product>
+            {
+                new PhysicalProduct(31, "Book", 700, 1), // Weight in kg
+                new DigitalProduct(32, "Paid Podcast", 100, "www.imspodcast.com")
+            };
+
+            // Calculate shipping costs for each product (will give respective function)
+            foreach (var product in products)
+            {
+                Console.WriteLine($"Product: {product.Name}, Shipping Cost: {product.CalculateShippingCost()}");
+            }
+
         }
     }
 

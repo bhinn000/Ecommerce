@@ -12,6 +12,15 @@ For inheritance ,
 
 For abstraction, 
 	We use main parent class as its type but while initialisation , we use different derived class type(concrete)
+	Done through "Order" class : CustomisedOrder and RegularOrder
 
 For polymorphism, 
-	different sub class or class will have same objects (base class or reference) but will run method on the basis of its actual method(derived class type)
+	=>		different sub class or class will have same objects (base class or reference) but will run method on the basis of its actual
+	method(derived class type)
+	Done in "Customer" class : OldCustomer which has different methods than the base
+
+	=>		Now, as per task : For 'Product' class
+	Base class : Product , which has virtual method : CalculateShippingCost()
+	Derived class : PhysicalProduct and DigitalProduct , overriding CalculateShippingCost()
+	Now make different implementation (logic) of the functions according to the type of Product
+

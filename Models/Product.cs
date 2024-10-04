@@ -55,7 +55,12 @@ namespace Ecommerce.Models
             this.Price = price;
         }
 
-      
-      
+        // Virtual method for calculating shipping cost 
+        public virtual decimal CalculateShippingCost()
+        {
+            return 0; // Default for general products
+        }
+
+
     }
 }
